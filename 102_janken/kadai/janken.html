@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/sample.css">
+    <title>じゃんけん</title>
+</head>
+
+<body>
+    <header>
+        <h1>じゃんけん</h1>
+    </header>
+
+    <main>
+        <ul>
+            <li id="gu_btn">グー</li>
+            <li id="cho_btn">チョキ</li>
+            <li id="par_btn">パー</li>
+        </ul>
+        <div id="hand">コンピュータの出した手は？</div>
+        <div id="judgment">結果は？</div>
+        <div id="attimuite">あっち向いて</div>
+        <ul>
+            <li id="ue_btn">うえ</li>
+            <li id="migi_btn">みぎ</li>
+            <li id="hidari_btn">ひだり</li>
+            <li id="shita_btn">した</li>
+        </ul>
+        <div id="attimuite_hoi">ほい！</div>
+        <div id="hand_a">コンピュータの出した手は？(atti)</div>
+        <div id="myhp">あなたのHP：</div>
+        <div id="chp">コンピュータのHP：</div>
+        <div id="more">もう一回あそぶ！！！！</div>
+    </main>
+
+    <footer>フッター</footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+        $(function () {
+            var myhp = 3;
+            var pchp = 3;
+            var mylose = 0;
+            var pclose = 0;
+            var gyanken = ["グー", "チョキ", "パー"];
+            var atti_arr = ["うえ", "した", "みぎ", "ひだり"];
+
+            function damageHp(hp) {
+                hp--;
+                return hp;
+            };
+
+            function finChk(hp) {
+                if (hp > 0) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            };
+
+            function dispHp(myhp, pchp) {
+                $('#myhp').text("あなたのHP：" + myhp);
+                $('#chp').text("コンピュータのHP：" + pchp);
+            };
+
+            function resetDisp(myhp, pchp) {
+                $('#hand').text("コンピュータの出した手は？");
+                $('#judgment').text("結果は？");
+                $('#myhp').text("あなたのHP：" + myhp);
+                $('#chp').text("コンピュータのHP：" + pchp);
+            };
+
+            function randHand() {
+                const num = Math.floor(Math.random() * 3);
+                let pc = "";
+                pc = gyanken[num];
+                return pc;
+            };
+
+            function randAtti() {
+                const num = Math.floor(Math.random() * 4);
+                let pc2 = "";
+                pc2 = atti_arr[num];
+                return pc2;
+            };
+
+            function judgeJanken(myhand, pchand) {
+                if (myhand = "グー") {
+                    if (pchand == "グー") {
+                        return 2; //あいこ
+                    } else if (pchand == "チョキ") {
+                        return 0; //勝ち
+                    } else if (pchand == "パー") {
+                        return 1; //負け
+                    }
+                } else if (myhand = "チョキ") {
+                    if (pchand == "グー") {
+                        return 1; //負け
+                    } else if (pchand == "チョキ") {
+                        return 2; //あいこ
+                    } else if (pchand == "パー") {
+                        return 0; //勝ち
+                    }
+                } else if (myhand = "パー") {
+                    if (pchand == "グー") {
+                        return 0; //勝ち
+                    } else if (pchand == "チョキ") {
+                        return 1; //負け
+                    } else if (pchand == "パー") {
+                        return 2; //あいこ
+                    }
+                };
+            };
+
+
+            function attiMuite() {
+                $('#ue_btn, #migi_btn, #hidari_btn, #shita_btn').on('click', function () {
+                    pc_atti = randAtti();
+                    $('#hand_a').text("コンピュータの出した手:" + pc_atti);
+                    var my_atti = $(this).text();
+                    if (my_atti == pc_atti) {
+                        $('#attimuite_hoi').text("かった！！！！");
+                    } else {
+                        $('#attimuite_hoi').text("もういっかい！");
+                    };
+                });
+            };
+
+
+
+            //ここに処理を追加
+            dispHp(myhp, pchp);
+            $('#gu_btn, #cho_btn, #par_btn').on('click', function () {
+                if (mylose == 0 && pclose == 0) {
+                    var myhand = $(this).text();
+                    var pchand = randHand();
+                    $('#hand').text("コンピュータの出した手:" + pchand);
+                    var jankenResult = judgeJanken(myhand, pchand);
+                    //勝ち
+                    if (jankenResult == 0) {
+                        $('#judgment').text("勝ち");
+                        attiMuite();
+                        pchp = damageHp(pchp);
+                        dispHp(myhp, pchp);
+                    }
+                    //負け
+                    else if (jankenResult == 1) {
+                        $('#judgment').text("負け");
+                        myhp = damageHp(myhp);
+                        dispHp(myhp, pchp);
+                    }
+                    //あいこ
+                    else if (jankenResult == 2) {
+                        $('#judgment').text("あいこ");
+                        dispHp(myhp, pchp);
+                    }
+                    mylose = finChk(myhp);
+                    pclose = finChk(pchp);
+                    console.log(mylose, pclose);
+                } else {
+                    console.log("wakaran");
+                };
+            });
+
+
+
+            $('#more').on('click', function () {
+                if (mylose == 0 && pclose == 0) {
+                    console.log("完全に理解した");
+                } else {
+                    mylose = 0;
+                    pclose = 0;
+                    myhp = 3;
+                    pchp = 3;
+                    resetDisp(myhp, pchp);
+                    console.log(mylose, pclose);
+                };
+            });
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/sample.css">
+    <title>おみくじ</title>
+</head>
+
+<body>
+    <header>
+        <h1>おみくじ</h1>
+    </header>
+
+    <main>
+        <ul>
+            <li id="pull">おみくじを引く</li>
+        </ul>
+        <p id="echo">結果は？</p>
+    </main>
+
+    <footer>フッター</footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#pull').on('click', function () {
+                var min = 1;
+                var max = 10;
+                const num = Math.floor(Math.random() * (max - min + 1) + min);
+
+                if (num == 1) {
+                    $('#echo').text("大吉");
+                    $('#echo').css("color", "red");
+                } else if (num >= 2 && num < 5) {
+                    $('#echo').text("中吉");
+                    $('#echo').css("color", "black");
+                } else if (num >= 5 && num < 8) {
+                    $('#echo').text("小吉");
+                    $('#echo').css("color", "black");
+                } else if (num >= 8 && num < 10) {
+                    $('#echo').text("凶");
+                    $('#echo').css("color", "black");
+                } else if (num == 10) {
+                    $('#echo').text("大凶");
+                    $('#echo').css("color", "black");
+                }
+
+            });
+            //ここに自分の処理を追加
+        });
+    </script>
+
+</body>
+
+</html>
