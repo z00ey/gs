@@ -50,16 +50,19 @@ li:hover{
     background-position: center center; 
     background-repeat: no-repeat;
 }
-#hand {
-    margin: 0 auto;
+#pc_hand {
+    margin: auto auto;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 #judgment{
-    margin: 0 auto;
+    margin: 30px auto;
     text-align: center;
 }
 .hand{
-width: 100%;
+    width: 100%;
+    display: flex;
 }
 .pchand_gu{
     background-image: url(../img/janken_gu.png);
@@ -101,7 +104,7 @@ img{
     object-fit: cover;
 }
 
-#gu_btn{
+/* #gu_btn{
     background-image: url(../img/janken_gu.png);
 }
 #cho_btn{
@@ -109,6 +112,54 @@ img{
 }
 #par_btn{
     background-image: url(../img/janken_pa.png);
+} */
+
+#mybox{
+    display: flex;
+    flex-direction: column;
+    /* height: 600px; */
+    text-indent:100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+#gu_box{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#gu_btn{
+    background-image: url(../img/janken_gu.png);
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    width: 300px;
+}
+
+#chopa_box{
+    display: flex;
+    height: 300px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+#cho_btn{
+    background-image: url(../img/janken_choki.png);
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    width: 300px;
+}
+#par_btn{
+    background-image: url(../img/janken_pa.png);
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    width: 300px;
 }
 #hp_box{
     display: flex;
@@ -144,3 +195,7 @@ img{
 #pchp_g{
     width: 300px;
 }
+
+
+
+

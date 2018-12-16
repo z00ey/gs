@@ -39,20 +39,20 @@ $(function () {
 
     //コンピュータの手を表示する処理
     function dispPcHand(pchand) {
-        $('#hand').removeClass();
-        $('#hand').text("コンピュータの出した手:" + pchand);
+        $('#pc_hand').removeClass();
+        $('#pc_hand').text("コンピュータの出した手:" + pchand);
         if (pchand == "グー") {
-            $('#hand').addClass('pchand_gu');
+            $('#pc_hand').addClass('pchand_gu');
         } else if (pchand == "チョキ") {
-            $('#hand').addClass('pchand_cho');
+            $('#pc_hand').addClass('pchand_cho');
         } else if (pchand == "パー") {
-            $('#hand').addClass('pchand_pa');
+            $('#pc_hand').addClass('pchand_pa');
         }
     };
 
     //リセット処理(呼ばれるやつ)
     function resetDisp() {
-        $('#hand').text("コンピュータの出した手は？");
+        $('#pc_hand').text("コンピュータの出した手は？");
         $('#judgment').text("結果は？");
         $('#judgment').css('color', 'black');
         $('#pchp_g').val(1);
@@ -90,22 +90,21 @@ $(function () {
         };
     };
 
-
     function dispRandHand() {
         function randHand(num) {
             var hoge = num;
             if (hoge == 1) {
-                $('#hand').addClass('pchand_gu');
-                $('#hand').removeClass('pchand_cho');
-                $('#hand').removeClass('pchand_pa');
+                $('#pc_hand').addClass('pchand_gu');
+                $('#pc_hand').removeClass('pchand_cho');
+                $('#pc_hand').removeClass('pchand_pa');
             } else if (hoge == 2) {
-                $('#hand').addClass('pchand_cho');
-                $('#hand').removeClass('pchand_gu');
-                $('#hand').removeClass('pchand_pa');
+                $('#pc_hand').addClass('pchand_cho');
+                $('#pc_hand').removeClass('pchand_gu');
+                $('#pc_hand').removeClass('pchand_pa');
             } else if (hoge == 3) {
-                $('#hand').addClass('pchand_pa');
-                $('#hand').removeClass('pchand_cho');
-                $('#hand').removeClass('pchand_gu');
+                $('#pc_hand').addClass('pchand_pa');
+                $('#pc_hand').removeClass('pchand_cho');
+                $('#pc_hand').removeClass('pchand_gu');
             }
         };
 
@@ -138,6 +137,7 @@ $(function () {
     $('#gu_btn, #cho_btn, #par_btn').on('click', function () {
         if (mylose == 0 && pclose == 0) {
             myhand = $(this).text();
+            console.log(myhand);
             pchand = randHand();
             dispPcHand(pchand);
             jankenResult = judgeJanken(myhand, pchand);
@@ -184,8 +184,8 @@ $(function () {
         } else {
             mylose = 0;
             pclose = 0;
-            myhp = 3;
-            pchp = 3;
+            myhp = 4;
+            pchp = 4;
             dispRandHand();
             resetDisp()
             console.log(mylose, pclose);
@@ -195,7 +195,7 @@ $(function () {
     // function attiMuite(whowin) {
     //     $('#ue_btn, #migi_btn, #hidari_btn, #shita_btn').on('click', function () {
     //         pc_atti = randAtti();
-    //         $('#hand_a').text("コンピュータの出した手:" + pc_atti);
+    //         $('#pc_hand_a').text("コンピュータの出した手:" + pc_atti);
     //         var my_atti = $(this).text();
     //         if ((my_atti == pc_atti) && whowin == "me") {    //じゃん勝ちが自分
     //             $('#attimuite_hoi').text("かった！！！！");
@@ -212,7 +212,7 @@ $(function () {
     // $('#ue_btn, #migi_btn, #hidari_btn, #shita_btn').on('click', function () {
     //     if (attiWinFlg == 0 || attiWinFlg == 1) {
     //         pc_atti = randAtti();
-    //         $('#hand_a').text("コンピュータの出した手:" + pc_atti);
+    //         $('#pc_hand_a').text("コンピュータの出した手:" + pc_atti);
     //         var my_atti = $(this).text();
     //         if ((my_atti == pc_atti) && attiWinFlg == 0) {    //じゃん勝ちが自分
     //             $('#attimuite_hoi').text("かった！！！！");
