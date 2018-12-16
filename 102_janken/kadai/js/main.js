@@ -8,6 +8,7 @@ $(function () {
     var myhand;         //自分の手
     var pchand;         //コンピューターの手
     var gyanken = ["グー", "チョキ", "パー"];
+
     // var atti_arr = ["うえ", "した", "みぎ", "ひだり"];
     // var attiWinFlg;
     var jankenResult;   //じゃんけんの結果 0:勝ち 1:負け 2:あいこ
@@ -89,6 +90,7 @@ $(function () {
         };
     };
 
+
     function dispRandHand() {
         function randHand(num) {
             var hoge = num;
@@ -117,7 +119,21 @@ $(function () {
         }, 200);
     };
 
+    function dispResult(mylose, pclose) {
+        if (mylose == 1) {
+            $('#judgment').text("あなたの負けです…");
+            $('#judgment').css('color', 'blue');
+        } else if (pclose == 1) {
+            $('#judgment').text("あなたの勝ちです！！！");
+            $('#judgment').css('color', 'red');
+        } else {
+            //なにもしない
+        }
+    };
+
+    //PCの手をランダム表示する処理を実行する
     dispRandHand();
+
     // じゃんけんボタン
     $('#gu_btn, #cho_btn, #par_btn').on('click', function () {
         if (mylose == 0 && pclose == 0) {
@@ -153,6 +169,7 @@ $(function () {
             }
             mylose = finChk(myhp);
             pclose = finChk(pchp);
+            dispResult(mylose, pclose);
             console.log(mylose, pclose);
         } else {
             console.log("wakaran");
@@ -170,7 +187,7 @@ $(function () {
             myhp = 3;
             pchp = 3;
             dispRandHand();
-            resetDisp();
+            resetDisp()
             console.log(mylose, pclose);
         };
     });

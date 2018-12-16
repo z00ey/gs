@@ -60,7 +60,6 @@ li:hover{
 }
 .hand{
 width: 100%;
-
 }
 .pchand_gu{
     background-image: url(../img/janken_gu.png);
@@ -111,23 +110,31 @@ img{
 #par_btn{
     background-image: url(../img/janken_pa.png);
 }
-#myhp_box {
+#hp_box{
     display: flex;
-    /* flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+}
+#myhp_box {
+   float: left;
+    display: flex;
+   /* flex-direction: column;
     justify-content: center;
     align-items: center; */
 }
 #pchp_box{
-    display: flex;
+   float: right;
+   display: flex;
+   margin-right: 50px;
     /* flex-direction: column;
     justify-content: center;
     align-items: center; */
 }
 #myhp{
-    width: 320px;
+    width: 250px;
     text-align: right;
 }
-#chp{
+#pchp{
     width: 320px;
     text-align: right;
 }
