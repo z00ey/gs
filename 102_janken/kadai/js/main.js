@@ -191,51 +191,6 @@ $(function () {
             console.log(mylose, pclose);
         };
     });
-
-    // function attiMuite(whowin) {
-    //     $('#ue_btn, #migi_btn, #hidari_btn, #shita_btn').on('click', function () {
-    //         pc_atti = randAtti();
-    //         $('#pc_hand_a').text("コンピュータの出した手:" + pc_atti);
-    //         var my_atti = $(this).text();
-    //         if ((my_atti == pc_atti) && whowin == "me") {    //じゃん勝ちが自分
-    //             $('#attimuite_hoi').text("かった！！！！");
-    //             return 1; //勝ち
-    //         } else if ((my_atti == pc_atti) && whowin == "pc") {    //じゃん勝ちがPC
-    //             $('#attimuite_hoi').text("まけた！！！！");
-    //             return 2; //負け
-    //         } else {
-    //             $('#attimuite_hoi').text("もういっかい！");
-    //             return 0; //引き分け
-    //         };
-    //     });
-    // };
-    // $('#ue_btn, #migi_btn, #hidari_btn, #shita_btn').on('click', function () {
-    //     if (attiWinFlg == 0 || attiWinFlg == 1) {
-    //         pc_atti = randAtti();
-    //         $('#pc_hand_a').text("コンピュータの出した手:" + pc_atti);
-    //         var my_atti = $(this).text();
-    //         if ((my_atti == pc_atti) && attiWinFlg == 0) {    //じゃん勝ちが自分
-    //             $('#attimuite_hoi').text("かった！！！！");
-    //             pchp = damageHp(pchp);
-    //             console.log("ダメージを与える");
-    //         } else if ((my_atti == pc_atti) && attiWinFlg == 1) {    //じゃん勝ちがPC
-    //             $('#attimuite_hoi').text("まけた！！！！");
-    //             myhp = damageHp(myhp);
-    //             console.log("ダメージを受けた");
-    //         } else {
-    //             $('#attimuite_hoi').text("もういっかい！"); //引き分け
-    //         };
-    //     } else {
-    //         //なにもしない
-    //     };
-    // });
-    // function randAtti() {
-    //     const num = Math.floor(Math.random() * 4);
-    //     let pc2 = "";
-    //     pc2 = atti_arr[num];
-    //     return pc2;
-    // };
-
 });
 
 
