@@ -1,17 +1,3 @@
-//ダメージ処理
-function damageHp(hp) {
-    hp--;
-    return hp;
-};
-//じゃんけん終わり判定
-function finChk(hp) {
-    if (hp > 0) {
-        return 0;
-    } else {
-        return 1;
-    }
-};
-
 $(function () {
     var myhp = 4;       //自分のHP
     var pchp = 4;       //コンピューターのHP
@@ -25,6 +11,22 @@ $(function () {
     // var atti_arr = ["うえ", "した", "みぎ", "ひだり"];
     // var attiWinFlg;
     var jankenResult;   //じゃんけんの結果 0:勝ち 1:負け 2:あいこ
+    let num = 1;
+
+    //ダメージ処理
+    function damageHp(hp) {
+        hp--;
+        return hp;
+    };
+
+    //じゃんけん終わり判定
+    function finChk(hp) {
+        if (hp > 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    };
 
     //コンピューターの手をランダムで入れる処理
     function randHand() {
@@ -33,6 +35,7 @@ $(function () {
         pc = gyanken[num];
         return pc;
     };
+
     //コンピュータの手を表示する処理
     function dispPcHand(pchand) {
         $('#hand').removeClass();
@@ -45,6 +48,7 @@ $(function () {
             $('#hand').addClass('pchand_pa');
         }
     };
+
     //リセット処理(呼ばれるやつ)
     function resetDisp() {
         $('#hand').text("コンピュータの出した手は？");
@@ -55,7 +59,6 @@ $(function () {
         // $('#myhp').text("あなたのHP：" + myhp);
         // $('#chp').text("コンピュータのHP：" + pchp);
     };
-
 
     //じゃんけんの勝ち負け判定処理
     function judgeJanken(myhand, pchand) {
@@ -86,20 +89,48 @@ $(function () {
         };
     };
 
+    function dispRandHand() {
+        function randHand(num) {
+            var hoge = num;
+            if (hoge == 1) {
+                $('#hand').addClass('pchand_gu');
+                $('#hand').removeClass('pchand_cho');
+                $('#hand').removeClass('pchand_pa');
+            } else if (hoge == 2) {
+                $('#hand').addClass('pchand_cho');
+                $('#hand').removeClass('pchand_gu');
+                $('#hand').removeClass('pchand_pa');
+            } else if (hoge == 3) {
+                $('#hand').addClass('pchand_pa');
+                $('#hand').removeClass('pchand_cho');
+                $('#hand').removeClass('pchand_gu');
+            }
+        };
+
+        timer = setInterval(() => {
+            randHand(num);
+            if (num == 3) {
+                num = 1;
+            } else {
+                num++;
+            }
+        }, 200);
+    };
+
+    dispRandHand();
     // じゃんけんボタン
     $('#gu_btn, #cho_btn, #par_btn').on('click', function () {
-        attiWinFlg = null;
         if (mylose == 0 && pclose == 0) {
             myhand = $(this).text();
             pchand = randHand();
             dispPcHand(pchand);
             jankenResult = judgeJanken(myhand, pchand);
+            clearInterval(timer);
             //勝ち
             if (jankenResult == 0) {
                 pchp = damageHp(pchp);
                 pchp_g = $('#pchp_g').val();
                 pchp_g = pchp_g - 0.25;
-                console.log(pchp_g);
                 $('#pchp_g').val(pchp_g);
                 $('#judgment').text("勝ち");
                 $('#judgment').css('color', 'red');
@@ -138,6 +169,7 @@ $(function () {
             pclose = 0;
             myhp = 3;
             pchp = 3;
+            dispRandHand();
             resetDisp();
             console.log(mylose, pclose);
         };
