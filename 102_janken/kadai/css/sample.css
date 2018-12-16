@@ -37,8 +37,103 @@ li{
     background-color: #FFF;
     display:table-cell;  /* 定義 */
     cursor: pointer;
+    height: 450px;
+    background-position: center center; 
+    background-repeat: no-repeat;
+    text-indent:100%;
+	white-space: nowrap;
+	overflow: hidden;
 }
 li:hover{
     background: #0066CC;
     color:#fff;
+    background-position: center center; 
+    background-repeat: no-repeat;
+}
+#hand {
+    margin: 0 auto;
+    text-align: center;
+}
+#judgment{
+    margin: 0 auto;
+    text-align: center;
+}
+.hand{
+width: 100%;
+
+}
+.pchand_gu{
+    background-image: url(../img/janken_gu.png);
+    background-position: center center; 
+    background-repeat: no-repeat;
+    text-indent:100%;
+	white-space: nowrap;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+}
+.pchand_cho{
+    background-image: url(../img/janken_choki.png);
+    background-position: center center; 
+    background-repeat: no-repeat;
+    text-indent:100%;
+	white-space: nowrap;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+}
+.pchand_pa{
+    background-image: url(../img/janken_pa.png);
+    background-position: center center; 
+    background-repeat: no-repeat;
+    text-indent:100%;
+	white-space: nowrap;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#gu_btn{
+    background-image: url(../img/janken_gu.png);
+}
+#cho_btn{
+    background-image: url(../img/janken_choki.png);
+}
+#par_btn{
+    background-image: url(../img/janken_pa.png);
+}
+#myhp_box {
+    display: flex;
+    /* flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+#pchp_box{
+    display: flex;
+    /* flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+#myhp{
+    width: 320px;
+    text-align: right;
+}
+#chp{
+    width: 320px;
+    text-align: right;
+}
+#myhp_g{
+    width: 300px;
+}
+#pchp_g{
+    width: 300px;
 }
