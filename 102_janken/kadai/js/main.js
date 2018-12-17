@@ -8,7 +8,6 @@ $(function () {
     var myhand;         //自分の手
     var pchand;         //コンピューターの手
     var gyanken = ["グー", "チョキ", "パー"];
-
     // var atti_arr = ["うえ", "した", "みぎ", "ひだり"];
     // var attiWinFlg;
     var jankenResult;   //じゃんけんの結果 0:勝ち 1:負け 2:あいこ
@@ -57,6 +56,10 @@ $(function () {
         $('#judgment').css('color', 'black');
         $('#pchp_g').val(1);
         $('#myhp_g').val(1);
+        $('#my_img').removeClass();
+        $('#my_img').addClass('my_img');
+        $('#pc_img').removeClass();
+        $('#pc_img').addClass('pc_img');
         // $('#myhp').text("あなたのHP：" + myhp);
         // $('#chp').text("コンピュータのHP：" + pchp);
     };
@@ -130,6 +133,23 @@ $(function () {
         }
     };
 
+    function dispWinImg(mylose, pclose) {
+        if (mylose == 1) {
+            $('#my_img').removeClass();
+            $('#my_img').addClass('my_img_lose');
+            $('#pc_img').removeClass();
+            $('#pc_img').addClass('pc_img_win');
+        } else if (pclose == 1) {
+            $('#my_img').removeClass();
+            $('#my_img').addClass('my_img_win');
+            $('#pc_img').removeClass();
+            $('#pc_img').addClass('pc_img_lose');
+        } else {
+
+            //なにもしない
+        }
+    };
+
     //PCの手をランダム表示する処理を実行する
     dispRandHand();
 
@@ -170,6 +190,7 @@ $(function () {
             mylose = finChk(myhp);
             pclose = finChk(pchp);
             dispResult(mylose, pclose);
+            dispWinImg(mylose, pclose);
             console.log(mylose, pclose);
         } else {
             console.log("wakaran");

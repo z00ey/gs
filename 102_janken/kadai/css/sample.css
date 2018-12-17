@@ -60,9 +60,10 @@ li:hover{
     margin: 30px auto;
     text-align: center;
 }
-.hand{
+#hand{
     width: 100%;
     display: flex;
+    justify-content: space-around;
 }
 .pchand_gu{
     background-image: url(../img/janken_gu.png);
@@ -71,8 +72,8 @@ li:hover{
     text-indent:100%;
 	white-space: nowrap;
     overflow: hidden;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     background-size: cover;
 }
 .pchand_cho{
@@ -82,8 +83,8 @@ li:hover{
     text-indent:100%;
 	white-space: nowrap;
     overflow: hidden;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     background-size: cover;
 }
 .pchand_pa{
@@ -93,26 +94,10 @@ li:hover{
     text-indent:100%;
 	white-space: nowrap;
     overflow: hidden;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     background-size: cover;
 }
-
-img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* #gu_btn{
-    background-image: url(../img/janken_gu.png);
-}
-#cho_btn{
-    background-image: url(../img/janken_choki.png);
-}
-#par_btn{
-    background-image: url(../img/janken_pa.png);
-} */
 
 #mybox{
     display: flex;
@@ -124,62 +109,41 @@ img{
 }
 #gu_box{
     height: 300px;
+    margin-left: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 #gu_btn{
     background-image: url(../img/janken_gu.png);
-    background-position: center center; 
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 300px;
-    width: 300px;
-}
-
-#chopa_box{
-    display: flex;
-    height: 300px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
 }
 #cho_btn{
     background-image: url(../img/janken_choki.png);
-    background-position: center center; 
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 300px;
-    width: 300px;
 }
 #par_btn{
     background-image: url(../img/janken_pa.png);
+}
+.hand_img{
     background-position: center center; 
     background-repeat: no-repeat;
     background-size: cover;
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
 }
+
 #hp_box{
     display: flex;
     justify-content: space-between;
-    height: 100px;
+    height: 50px;
 }
 #myhp_box {
    float: left;
     display: flex;
-   /* flex-direction: column;
-    justify-content: center;
-    align-items: center; */
 }
 #pchp_box{
    float: right;
    display: flex;
    margin-right: 50px;
-    /* flex-direction: column;
-    justify-content: center;
-    align-items: center; */
 }
 #myhp{
     width: 250px;
@@ -195,7 +159,102 @@ img{
 #pchp_g{
     width: 300px;
 }
+#img_box{
+    height: 350px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.my_img{
+    background-image: url(../img/necchusyou_face_boy1.png);
+    height: 300px;
+    width: 300px;
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.my_img_win{
+    background-image: url(../img/pose_win_boy.png);
+    height: 300px;
+    width: 300px;
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.my_img_lose{
+    background-image: url(../img/pose_lose_boy.png);
+    height: 300px;
+    width: 300px;
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.pc_img{
+    background-image: url(../img/figure_fighting_pose.png);
+    height: 300px;
+    width: 300px;
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.pc_img_lose{
+    background-image: url(../img/pc_lose.png);
+    height: 300px;
+    width: 300px;
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.pc_img_win{
+    background-image: url(../img/pc_win.png);
+    height: 300px;
+    width: 300px;
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+
+/* .char_img{
+    height: 300px;
+    width: 300px;
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: contain;
+} */
+
+
+
+#hand_box{
+    height: 350px;
+    display: flex;
+    justify-content: space-around;
+}
+#myhand_box{
+    display: flex;
+    text-indent:100%;
+	white-space: nowrap;
+    overflow: hidden;
+    
+    margin: auto auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
 
+
+
+
+
+/* 使わなくなったやつ */
+#chopa_box{
+    display: flex;
+    height: 300px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

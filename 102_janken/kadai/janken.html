@@ -16,21 +16,21 @@
         <h1>じゃんけん</h1>
     </header>
     <main>
-        <div class="hand">
+        <div id="hand">
             <div id="mybox">
                 <div id="gu_box">
-                    <div id="gu_btn">グー</div>
-                </div>
-                <div id="chopa_box">
-                    <div id="cho_btn">チョキ</div>
-                    <div id="par_btn">パー</div>
+                    <div id="gu_btn" class="hand_img">グー</div>
+                    <div id="cho_btn" class="hand_img">チョキ</div>
+                    <div id="par_btn" class="hand_img">パー</div>
                 </div>
             </div>
             <div id="pc_hand"></div>
         </div>
 
-        <div id="judgment">結果は？</div>
-
+        <div id="img_box">
+            <div id="my_img" class="my_img"></div>
+            <div id="pc_img" class="pc_img"></div>
+        </div>
         <div id="hp_box">
             <div id="myhp_box">
                 <div id="myhp">あなたのHP：</div>
@@ -41,6 +41,9 @@
                 <meter id="pchp_g" value="1"></meter>
             </div>
         </div>
+
+        <div id="judgment">結果は？</div>
+
         <div id="more">もう一回あそぶ！！！！</div>
     </main>
     <!-- <footer>フッター</footer> -->
