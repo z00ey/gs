@@ -12,6 +12,8 @@ $(function () {
     // var attiWinFlg;
     var jankenResult;   //じゃんけんの結果 0:勝ち 1:負け 2:あいこ
     let num = 1;
+    let kusogeFlg = 0;
+    let time;
 
     //ダメージ処理
     function damageHp(hp) {
@@ -50,46 +52,58 @@ $(function () {
     };
 
     //リセット処理(呼ばれるやつ)
-    function resetDisp() {
+    function resetDisp(kusogeFlg) {
         $('#pc_hand').text("コンピュータの出した手は？");
         $('#judgment').text("結果は？");
         $('#judgment').css('color', 'black');
         $('#pchp_g').val(1);
         $('#myhp_g').val(1);
-        $('#my_img').removeClass();
-        $('#my_img').addClass('my_img');
-        $('#pc_img').removeClass();
-        $('#pc_img').addClass('pc_img');
-        // $('#myhp').text("あなたのHP：" + myhp);
-        // $('#chp').text("コンピュータのHP：" + pchp);
+        if (kusogeFlg == 0) {
+            $('#my_img').removeClass();
+            $('#my_img').addClass('my_img');
+            $('#pc_img').removeClass();
+            $('#pc_img').addClass('pc_img');
+        } else if (kusogeFlg == 1) {
+            $('#my_img').removeClass();
+            $('#my_img').addClass('my_img_kusogemode');
+            $('#pc_img').removeClass();
+            $('#pc_img').addClass('pc_img_kannnon');
+            // $('#pc_hand').html('<div class="pc_hand"></div>');
+            $('body').css('background-color', 'gold');
+            $('h1').css('background-color', 'gold');
+        };
     };
 
     //じゃんけんの勝ち負け判定処理
-    function judgeJanken(myhand, pchand) {
-        if (myhand == "グー") {
-            if (pchand == "グー") {
-                return 2; //あいこ
-            } else if (pchand == "チョキ") {
-                return 0; //勝ち
-            } else if (pchand == "パー") {
-                return 1; //負け
-            }
-        } else if (myhand == "チョキ") {
-            if (pchand == "グー") {
-                return 1; //負け
-            } else if (pchand == "チョキ") {
-                return 2; //あいこ
-            } else if (pchand == "パー") {
-                return 0; //勝ち
-            }
-        } else if (myhand == "パー") {
-            if (pchand == "グー") {
-                return 0; //勝ち
-            } else if (pchand == "チョキ") {
-                return 1; //負け
-            } else if (pchand == "パー") {
-                return 2; //あいこ
-            }
+    function judgeJanken(myhand, pchand, kusogeFlg) {
+        if (kusogeFlg == 0) {
+            if (myhand == "グー") {
+                if (pchand == "グー") {
+                    return 2; //あいこ
+                } else if (pchand == "チョキ") {
+                    return 0; //勝ち
+                } else if (pchand == "パー") {
+                    return 1; //負け
+                }
+            } else if (myhand == "チョキ") {
+                if (pchand == "グー") {
+                    return 1; //負け
+                } else if (pchand == "チョキ") {
+                    return 2; //あいこ
+                } else if (pchand == "パー") {
+                    return 0; //勝ち
+                }
+            } else if (myhand == "パー") {
+                if (pchand == "グー") {
+                    return 0; //勝ち
+                } else if (pchand == "チョキ") {
+                    return 1; //負け
+                } else if (pchand == "パー") {
+                    return 2; //あいこ
+                }
+            };
+        } else if (kusogeFlg == 1) {
+            return 1;//絶対に負け
         };
     };
 
@@ -111,6 +125,12 @@ $(function () {
             }
         };
 
+        if (kusogeFlg == 1) {
+            time = 50;
+        } else if (kusogeFlg == 0) {
+            time = 200;
+        };
+        console.log("time:" + time);
         timer = setInterval(() => {
             randHand(num);
             if (num == 3) {
@@ -118,7 +138,7 @@ $(function () {
             } else {
                 num++;
             }
-        }, 200);
+        }, time);
     };
 
     function dispResult(mylose, pclose) {
@@ -133,25 +153,29 @@ $(function () {
         }
     };
 
-    function dispWinImg(mylose, pclose) {
-        if (mylose == 1) {
+    function dispWinImg(mylose, pclose, kusogeFlg) {
+        console.log(mylose, pclose, kusogeFlg);
+        if (mylose == 1 && kusogeFlg == 0) {
             $('#my_img').removeClass();
             $('#my_img').addClass('my_img_lose');
             $('#pc_img').removeClass();
             $('#pc_img').addClass('pc_img_win');
-        } else if (pclose == 1) {
+        } else if (pclose == 1 && kusogeFlg == 0) {
             $('#my_img').removeClass();
             $('#my_img').addClass('my_img_win');
             $('#pc_img').removeClass();
             $('#pc_img').addClass('pc_img_lose');
+        } else if (mylose == 1 && kusogeFlg == 1) {
+            $('#my_img').removeClass();
+            $('#my_img').addClass('my_img_lose');
         } else {
-
             //なにもしない
         }
     };
-
     //PCの手をランダム表示する処理を実行する
     dispRandHand();
+    // $("more").hide();
+
 
     // じゃんけんボタン
     $('#gu_btn, #cho_btn, #par_btn').on('click', function () {
@@ -160,8 +184,12 @@ $(function () {
             console.log(myhand);
             pchand = randHand();
             dispPcHand(pchand);
-            jankenResult = judgeJanken(myhand, pchand);
-            clearInterval(timer);
+            jankenResult = judgeJanken(myhand, pchand, kusogeFlg);
+            if (kusogeFlg == 0) {
+                clearInterval(timer);
+            } else if (kusogeFlg == 1) {
+                //clearInterval(timer);
+            };
             //勝ち
             if (jankenResult == 0) {
                 pchp = damageHp(pchp);
@@ -190,8 +218,9 @@ $(function () {
             mylose = finChk(myhp);
             pclose = finChk(pchp);
             dispResult(mylose, pclose);
-            dispWinImg(mylose, pclose);
+            dispWinImg(mylose, pclose, kusogeFlg);
             console.log(mylose, pclose);
+            console.log("time:" + time);
         } else {
             console.log("wakaran");
         };
@@ -203,13 +232,24 @@ $(function () {
             //どちらかのHPが0でないときは
             //なにもしない
         } else {
-            mylose = 0;
-            pclose = 0;
-            myhp = 4;
-            pchp = 4;
-            dispRandHand();
-            resetDisp()
-            console.log(mylose, pclose);
+            if (mylose == 1) {
+                mylose = 0;
+                pclose = 0;
+                myhp = 4;
+                pchp = 4;
+                dispRandHand();
+                resetDisp(kusogeFlg);
+                console.log(mylose, pclose);
+            } else if (pclose == 1) {
+                kusogeFlg = 1;
+                mylose = 0;
+                pclose = 0;
+                myhp = 4;
+                pchp = 4;
+                dispRandHand();
+                resetDisp(kusogeFlg);
+                console.log(mylose, pclose);
+            };
         };
     });
 });
